@@ -1,0 +1,859 @@
+/* ==========================================================================
+   1. VARIABLES CSS (PALETA DE COLORES Y FUENTES)
+   ========================================================================== */
+
+:root {
+    /* Paleta de Colores Principal - Modo Oscuro (Predeterminado) */
+    --bg-main: #0d0a08;              /* Fondo principal de la página */
+    --bg-header: #140e0a;            /* Fondo del header y elementos flotantes */
+    --bg-card: #1d1510;              /* Fondo de las tarjetas y contenedores */
+    --bg-card-hover: #261c16;        /* Fondo al pasar el cursor sobre las tarjetas */
+    
+    --text-primary: #ffffff;         /* Texto principal */
+    --text-secondary: #b8aba0;       /* Texto secundario y subtítulos */
+    --text-muted: #807266;           /* Texto atenuado y fechas */
+    
+    --accent-gold: #c88d46;          /* Color de acento dorado/café tostado */
+    --accent-hover: #e0a358;         /* Hover de acentos */
+    --border-color: #2e231c;         /* Color de bordes y divisores */
+    --card-border: #382b22;          /* Borde sutil de las tarjetas */
+    
+    /* Variables para Sombras y Transiciones */
+    --shadow-main: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --transition-fast: all 0.3s ease;
+    
+    /* Tipografías de Google Fonts */
+    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Paleta de Colores - Modo Claro (Activado mediante JS) */
+body.light-mode {
+    --bg-main: #f8f5f0;
+    --bg-header: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0eae1;
+    
+    --text-primary: #211710;
+    --text-secondary: #5c4d42;
+    --text-muted: #8c7b6e;
+    
+    --accent-gold: #b3732a;
+    --accent-hover: #8f5a1e;
+    --border-color: #e0d5c8;
+    --card-border: #d4c5b3;
+    
+    --shadow-main: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   2. RESETEO UNIVERSAL Y ESTILOS BASE
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+/* ==========================================================================
+   3. ENCABEZADO Y NAVEGACIÓN (HEADER CON FLEXBOX)
+   ========================================================================== */
+
+.header {
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition-fast);
+}
+
+.header-container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex; /* Flexbox para alineación principal */
+    justify-content: space-between; /* Separa logo, menú y switch */
+    align-items: center; /* Alineación vertical al centro */
+}
+
+/* Logo de la Marca */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.brand-title {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+.brand-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Menú de Navegación */
+.nav-menu ul {
+    display: flex; /* Flexbox para los items del menú */
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-menu a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--text-primary);
+}
+
+/* Subrayado indicador de página activa */
+.nav-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--accent-gold);
+    border-radius: 2px;
+}
+
+/* Switch Conmutador Modo Oscuro / Modo Claro */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sun-icon, .moon-icon {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #382b22;
+    transition: .4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    transition: .4s;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round::before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-gold);
+}
+
+input:checked + .slider::before {
+    transform: translateX(22px);
+}
+/* ==========================================================================
+   4. BANNER HERO Y FRASE DECORATIVA
+   ========================================================================== */
+
+.hero-section {
+    position: relative;
+    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtaDmDuJYT0PUOJFDGn_3frNx9M2YVo3hz0PksWQt8ow&s=10') center/cover no-repeat;
+    padding: 70px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(13, 10, 8, 0.45) 0%, rgba(13, 10, 8, 0.68) 100%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex; /* Flexbox para separar texto y frase */
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.hero-description {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.hero-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--accent-gold);
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: var(--transition-fast);
+    box-shadow: 0 10px 22px rgba(200, 141, 70, 0.25);
+}
+
+.hero-link:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* Frase Cursiva Decorativa en el Hero */
+.hero-quote {
+    max-width: 380px;
+    text-align: right;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin-bottom: 12px;
+}
+
+.quote-divider {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    color: var(--accent-gold);
+}
+
+.quote-divider span {
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background-color: var(--accent-gold);
+    opacity: 0.6;
+}
+
+/* ==========================================================================
+   5. SECCIÓN DE GALERÍA Y BARRA DE FILTROS
+   ========================================================================== */
+
+.gallery-section {
+    padding: 40px 0 60px 0;
+}
+
+/* Barra de Filtros con Flexbox */
+.filter-nav {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los botones bajen si la pantalla es estrecha */
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    border-radius: 30px; /* Bordes redondeados tipo cápsula */
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+
+.filter-btn i {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: var(--transition-fast);
+}
+
+.filter-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--text-primary);
+}
+
+.filter-btn:hover i {
+    color: var(--accent-gold);
+}
+
+/* Estado Activo del Botón Seleccionado */
+.filter-btn.active {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #ffffff;
+}
+
+.filter-btn.active i {
+    color: #ffffff;
+}
+/* ==========================================================================
+   6. CUADRÍCULA DE TARJETAS (GALLERY GRID CON FLEXBOX)
+   ========================================================================== */
+
+.gallery-grid {
+    display: flex;
+    flex-wrap: wrap; /* Flexbox para distribuir tarjetas en múltiples filas */
+    gap: 20px;       /* Espaciado uniforme entre tarjetas */
+    margin-bottom: 50px;
+}
+
+/* Tarjeta Individual de la Galería */
+.gallery-card {
+    flex: 1 1 calc(25% - 20px); /* 4 columnas por fila */
+    min-width: 260px;          /* Ancho mínimo antes de reacomodarse */
+    background-color: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: var(--shadow-main);
+    background-color: var(--bg-card-hover);
+}
+
+/* Contenedor de la Imagen */
+.card-image-wrapper {
+    width: 100%;
+    height: 190px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen sin deformarla */
+    transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .card-image-wrapper img {
+    transform: scale(1.08); /* Efecto de zoom suave al pasar el cursor */
+}
+
+/* Contenido de la Tarjeta */
+.card-content {
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.card-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Empuja la etiqueta hacia el fondo */
+}
+
+/* Etiqueta de Categoría */
+.card-tag {
+    font-size: 0.8rem;
+    color: var(--accent-gold);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
+}
+
+.card-tag i {
+    font-size: 0.85rem;
+}
+/* ==========================================================================
+   7. PAGINACIÓN CON FLEXBOX
+   ========================================================================== */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.page-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background-color: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.page-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--text-primary);
+}
+
+.page-btn.active {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   8. VENTANA MODAL / VISOR DE IMÁGENES (LIGHTBOX)
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.88);
+    backdrop-filter: blur(8px); /* Efecto desenfoque de fondo */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Clase que activa la visibilidad mediante JavaScript */
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Botón de Cierre (X) */
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition-fast);
+}
+
+.modal-close:hover {
+    background-color: var(--accent-gold);
+}
+
+/* Botones de Navegación Lateral (Prev/Next) */
+.modal-nav {
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: #ffffff;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: var(--transition-fast);
+}
+
+.modal-nav:hover {
+    background-color: var(--accent-gold);
+}
+
+.modal-nav.prev {
+    left: 15px;
+}
+
+.modal-nav.next {
+    right: 15px;
+}
+
+/* Imagen Ampliada y Datos */
+.modal-body img {
+    width: 100%;
+    max-height: 520px;
+    object-fit: cover;
+    display: block;
+}
+
+.modal-info {
+    padding: 20px 25px;
+    background-color: var(--bg-card);
+}
+
+.modal-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.modal-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.modal-footer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 12px;
+}
+
+.modal-counter {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+/* ==========================================================================
+   9. PIE DE PÁGINA (FOOTER CON FLEXBOX)
+   ========================================================================== */
+
+.footer {
+    background-color: var(--bg-header);
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0;
+    margin-top: 40px;
+}
+
+.footer-container {
+    width: 90%;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-brand {
+    flex: 1;
+}
+
+.footer-quote {
+    flex: 2;
+    text-align: center;
+}
+
+.footer-quote .quote-main {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.footer-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    transition: var(--transition-fast);
+}
+
+.social-links a:hover {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: #ffffff;
+}
+
+.footer-location {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.country-flag {
+    width: 28px;
+    height: 18px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.location-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.country-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.country-slogan {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* ==========================================================================
+   10. MEDIA QUERIES (DISEÑO RESPONSIVE ADAPTABLE)
+   ========================================================================== */
+
+/* Tablets y pantallas medianas (<= 992px) */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .hero-quote {
+        text-align: center;
+    }
+
+    .quote-divider {
+        justify-content: center;
+    }
+
+    .gallery-card {
+        flex: 1 1 calc(50% - 20px); /* 2 columnas en Tablets */
+    }
+
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 25px;
+    }
+
+    .footer-info {
+        align-items: center;
+    }
+}
+
+/* Teléfonos y pantallas pequeñas (<= 768px) */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-menu ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero-title {
+        font-size: 2.3rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .filter-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+    }
+
+    .gallery-card {
+        flex: 1 1 100%; /* 1 columna en Celulares */
+    }
+
+    .modal-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Teléfonos muy pequeños (<= 576px) */
+@media (max-width: 576px) {
+    .nav-menu ul {
+        font-size: 0.82rem;
+        gap: 10px;
+    }
+
+    .hero-section {
+        padding: 40px 0;
+    }
+
+    .card-image-wrapper {
+        height: 220px;
+    }
+}

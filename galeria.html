@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Galería de Café Hondureño</title>
+    
+    <!-- Fuentes de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Íconos de Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Hoja de Estilos CSS -->
+    <link rel="stylesheet" href="steyle.css">
+</head>
+<body>
+
+    <!-- ENCABEZADO Y MENÚ DE NAVEGACIÓN PRINCIPAL -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo / Nombre de la Marca -->
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-mug-hot logo-icon"></i>
+                <div class="logo-text">
+                    <span class="brand-title">Galería de</span>
+                    <span class="brand-subtitle">Café Hondureño</span>
+                </div>
+            </a>
+
+            <!-- Menú de Navegación -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="about.html">El Café</a></li>
+                    <li><a href="galeria.html" class="active">Galería</a></li>
+                    <li><a href="news.html">Regiones Cafetaleras</a></li>
+                    <li><a href="news.html">Curiosidades</a></li>
+                    <li><a href="contact.html">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <!-- Botón Conmutador de Modo Oscuro / Modo Claro -->
+            <div class="theme-toggle">
+                <i class="fa-regular fa-sun sun-icon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch" checked>
+                    <span class="slider round"></span>
+                </label>
+                <i class="fa-regular fa-moon moon-icon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- El contenido principal de la galería irá a continuación -->
+     <!-- SECCIÓN PRINCIPAL / HERO BANNER -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <!-- Lado Izquierdo: Título y Descripción Principal -->
+                <div class="hero-content">
+                    <h1 class="hero-title">Galería</h1>
+                    <p class="hero-description">
+                        Descubre la belleza de nuestras montañas, el trabajo de nuestra gente y todo lo que hace único al café hondureño.
+                    </p>
+                    <a href="galeria.html" class="hero-link">Ver galería completa</a>
+                </div>
+
+                <!-- Lado Derecho: Frase Cursiva Decorativa -->
+                <div class="hero-quote">
+                    <p class="quote-text">
+                        Café de Honduras, un orgullo que se ve en cada imagen.
+                    </p>
+                    <div class="quote-divider">
+                        <span></span>
+                        <i class="fa-solid fa-seedling"></i>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- SECCIÓN DE GALERÍA Y FILTROS -->
+        <section class="gallery-section">
+            <div class="container">
+                
+                <!-- Barra de Filtros por Categoría -->
+                <nav class="filter-nav" aria-label="Filtros de Galería">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fa-solid fa-border-all"></i> Todas
+                    </button>
+                    <button class="filter-btn" data-filter="paisajes">
+                        <i class="fa-solid fa-mountain-sun"></i> Paisajes cafetaleros
+                    </button>
+                    <button class="filter-btn" data-filter="cultivo">
+                        <i class="fa-solid fa-leaf"></i> Cultivo y cosecha
+                    </button>
+                    <button class="filter-btn" data-filter="granos">
+                        <i class="fa-solid fa-ban"></i> Granos de café
+                    </button>
+                    <button class="filter-btn" data-filter="preparacion">
+                        <i class="fa-solid fa-mug-saucer"></i> Preparación del café
+                    </button>
+                    <button class="filter-btn" data-filter="cultura">
+                        <i class="fa-solid fa-users"></i> Cultura cafetalera
+                    </button>
+                    <button class="filter-btn" data-filter="regiones">
+                        <i class="fa-solid fa-location-dot"></i> Regiones productoras
+                    </button>
+                </nav>
+
+                <!-- Cuadrícula con Tarjetas de Imágenes -->
+                <div class="gallery-grid">
+                    
+                    <!-- Tarjeta 1 -->
+                    <article class="gallery-card" data-category="paisajes" data-index="1">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8DbEUivyOrtSMMqDmmfGEDPALg98rSJROXnmGhO33jA&s=10" alt="Paisaje cafetalero de Marcala" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Paisaje cafetalero de Marcala</h3>
+                            <p class="card-description">Las montañas de Marcala, La Paz, son el hogar de un café de alta calidad.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-mountain-sun"></i> Paisajes cafetaleros
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 2 -->
+                    <article class="gallery-card" data-category="cultivo" data-index="2">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGvorylR5CHmAOLBc1xssM_gStmiFNIXF5FK0T-k_sCQ&s=10" alt="Cosecha del café" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cosecha del café</h3>
+                            <p class="card-description">La recolección de los granos es una tradición que pasa de generación en generación.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-leaf"></i> Cultivo y cosecha
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 3 -->
+                    <article class="gallery-card" data-category="granos" data-index="3">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAFYPBeKzx8-H5lqbQFKKUu_Od_ajZNE1N_gacoYi1Wg&s=10" alt="Granos de café" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Granos de café</h3>
+                            <p class="card-description">Los granos se seleccionan cuidadosamente para mantener su calidad y sabor.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-ban"></i> Granos de café
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 4 -->
+                    <article class="gallery-card" data-category="preparacion" data-index="4">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQDIP9WjhJUYQ0PQugMe_SJWMui0JDgCTagFM6jod_WQ&s=10" alt="Tostado del café" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Tostado del café</h3>
+                            <p class="card-description">El tostado resalta los aromas y sabores únicos del café hondureño.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-mug-saucer"></i> Preparación del café
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 5 -->
+                    <article class="gallery-card" data-category="cultura" data-index="5">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs7UStHJJrPZ4UG30ss7ttsi07lWIwBJ7WLsRvK_rZ3A&s=10" alt="Cultura cafetalera" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Cultura cafetalera</h3>
+                            <p class="card-description">El café es parte de nuestra identidad, nuestra gente y nuestras costumbres.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-users"></i> Cultura cafetalera
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 6 -->
+                    <article class="gallery-card" data-category="regiones" data-index="6">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5T9X-6WfppD0k_leyVQyFJ53uaJkHD6WcyFse0vOx-w&s=10" alt="Región de Copán" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Región de Copán</h3>
+                            <p class="card-description">Sus suelos volcánicos y clima ideal dan un café con gran personalidad.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-location-dot"></i> Regiones productoras
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 7 -->
+                    <article class="gallery-card" data-category="cultura" data-index="7">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4qdh1vwYiOXPRdkVNhn5YKvejPlNWrGMVsqbWMQNniA&s=10" alt="Tradición cafetalera" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Tradición cafetalera</h3>
+                            <p class="card-description">Familias que trabajan con esfuerzo y dedicación para llevar el mejor café a todo el mundo.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-users"></i> Cultura cafetalera
+                            </span>
+                        </div>
+                    </article>
+
+                    <!-- Tarjeta 8 -->
+                    <article class="gallery-card" data-category="granos" data-index="8">
+                        <div class="card-image-wrapper">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwiuzjkBvjmwoj_4cpR7JpjTkYAGDlLOWPjH4OSkZp8g&s=10" alt="Proceso del grano" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Proceso del grano</h3>
+                            <p class="card-description">Desde la finca hasta la taza, cada etapa es importante.</p>
+                            <span class="card-tag">
+                                <i class="fa-solid fa-ban"></i> Granos de café
+                            </span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+        <!-- Controles de Paginación -->
+            <nav class="pagination" aria-label="Navegación de galería">
+                <button class="page-btn prev" aria-label="Página anterior">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="page-btn">4</button>
+                <button class="page-btn next" aria-label="Página siguiente">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </nav>
+
+        </section>
+    </main>
+
+    <!-- VENTANA MODAL / VISOR DE IMÁGENES (LIGHTBOX) -->
+    <div id="gallery-modal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <!-- Botón de Cierre -->
+            <button class="modal-close" id="modal-close" aria-label="Cerrar visor">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Botón Imagen Anterior -->
+            <button class="modal-nav prev" id="modal-prev" aria-label="Imagen anterior">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            <!-- Previsualización de Imagen Grandes -->
+            <div class="modal-body">
+                <img id="modal-img" src="" alt="Vista ampliada de la galería">
+                <div class="modal-info">
+                    <h3 id="modal-title" class="modal-title">Cosecha del café</h3>
+                    <p id="modal-description" class="modal-description">
+                        La recolección de los granos es una tradición que pasa de generación en generación.
+                    </p>
+                    <div class="modal-footer-info">
+                        <span id="modal-tag" class="card-tag">
+                            <i class="fa-solid fa-leaf"></i> Cultivo y cosecha
+                        </span>
+                        <span id="modal-counter" class="modal-counter">2/8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón Imagen Siguiente -->
+            <button class="modal-nav next" id="modal-next" aria-label="Imagen siguiente">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+    <!-- PIE DE PÁGINA (FOOTER) -->
+    <footer class="footer">
+        <div class="footer-container">
+            
+            <!-- Columna 1: Logo de Marca -->
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <i class="fa-solid fa-mug-hot logo-icon"></i>
+                    <div class="logo-text">
+                        <span class="brand-title">Galería de</span>
+                        <span class="brand-subtitle">Café Hondureño</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Columna 2: Frase Célebre Central -->
+            <div class="footer-quote">
+                <p class="quote-main">“El café no solo se toma, se vive.”</p>
+                <div class="quote-divider">
+                    <span></span>
+                    <i class="fa-solid fa-seedling"></i>
+                    <span></span>
+                </div>
+            </div>
+
+            <!-- Columna 3: Redes Sociales y País -->
+            <div class="footer-info">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <div class="footer-location">
+                    <img src="https://flagcdn.com/w40/hn.png" alt="Bandera de Honduras" class="country-flag">
+                    <div class="location-text">
+                        <span class="country-name">Honduras</span>
+                        <small class="country-slogan">Tierra de café, tierra de gente</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Archivo de Interactividad JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+</html>
